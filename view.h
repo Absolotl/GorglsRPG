@@ -28,6 +28,7 @@ class View
 	void drawItemList(std::vector<Item> list, int index);
 	void drawMiniMap(Character a, int posX, int posY);
 	void drawMenu();
+	void drawMap();
 
 	void setStatus(std::string status) { this->status = status; }
 	void setLocation(std::string location) { this->location = location; }
@@ -59,7 +60,41 @@ void View::drawElements(std::string titel, std::vector<std::string> lines)
 			std::cout << "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n";
 		}
 		
-		std::cout << "# " << lines[i] << " #\n";
+		std::cout << "# ";
+		for (int j = 0; j < lines[i].size(); j++)
+		{
+			if (j > 41 && j < 56)
+			{
+				switch (lines[i][j])
+				{
+				case 'g':
+					std::cout << dye::light_yellow(lines[i][j]);
+					break;
+				case 'r':
+					std::cout << dye::blue(lines[i][j]);
+					break;
+				case 'f':
+					std::cout << dye::green(lines[i][j]);
+					break;
+				case 'm':
+					std::cout << dye::grey(lines[i][j]);
+					break;
+				case 'b':
+					std::cout << dye::red(lines[i][j]);
+					break;
+				case 'H':
+					std::cout << dye::red(lines[i][j]);
+					break;	
+				default:
+					std::cout << lines[i][j];
+					break;
+				}
+			}
+			else std::cout << lines[i][j];
+		}
+		
+		//std::cout << lines[i];
+		std::cout << " #\n";
 	}
 	std::cout << "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #"  << std::endl;
 }
@@ -325,5 +360,46 @@ void View::drawTitle()
 void View::drawCharCreation()
 {
 	line1 = "";
+}
+
+void View::drawMap()
+{
+	std::cout << "Here is the map:\n";
+	for (int i = 0; i < MAPHEIGTH; i++)
+	{
+		for (int j = 0; j < MAPLENGTH; j++)
+		{
+			switch (mapKnown[i][j])
+			{
+			case 'g':
+				std::cout << dye::light_yellow(mapKnown[i][j]);
+				break;
+			case 'r':
+				std::cout << dye::blue(mapKnown[i][j]);
+				break;
+			case 'f':
+				std::cout << dye::green(mapKnown[i][j]);
+				break;
+			case 'm':
+				std::cout << dye::grey(mapKnown[i][j]);
+				break;
+			case 'b':
+				std::cout << dye::red(mapKnown[i][j]);
+				break;
+			case 'H':
+				std::cout << dye::red(mapKnown[i][j]);
+				break;	
+			default:
+				std::cout << mapKnown[i][j];
+				break;
+			}
+			std::cout << ' ';
+		}
+		std::cout << '\n';
+	}	
+	std::cout <<"press Enter to return.";
+	std::cin;
+	std::cout << '\n';
+	drawMenu();
 }
 

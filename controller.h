@@ -115,8 +115,14 @@ bool Controller::processUserInput(char input)
 		{
 			view->drawMenu();
 			menuMain = true;
+			menuMap = false;
 			return true;
 		}
+		else if (menuMain == true)
+		{
+			view->drawMap();
+			return true;
+		}		
 		else return false;
 	case 'U':
 	case 'u':

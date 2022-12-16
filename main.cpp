@@ -4,6 +4,8 @@
 #include <thread>
 #include <vector>
 #include <random>
+#include "../Libs/color-console-master/include/color.hpp"
+
 #include "Character.h"
 #include "Class.h"
 #include "map.h"
